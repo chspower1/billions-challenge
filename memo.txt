@@ -1,0 +1,11 @@
+getServerSideProps를 typescript에서 이용하기
+https://nextjs.org/docs/basic-features/typescript#static-generation-and-server-side-rendering
+
+{data.map((i, index) => (
+                <div key={index}>
+                    <h1>{i.id}</h1>
+                    <Link href={`/details/${i.id}`}>{/* <img src={i.squareImage} /> */}</Link>
+                    <p>재산 : {i.netWorth}</p>
+                    <p>관련산업 : {i.industries.join("&")}</p>
+                </div>
+            ))}

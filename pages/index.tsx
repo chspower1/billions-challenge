@@ -10,14 +10,13 @@ interface Billions {
     netWorth: number;
     industries: any;
 }
-interface resultProps extends Billions {}
 interface MapProps {
     item: Billions;
     index: number;
 }
 
 const Home: NextPage<HomeProps> = ({ billions }: HomeProps) => {
-    const result = billions.map((item: Billions, index: number) => {
+    const result = billions.map((item, index) => {
         return (
             <div key={index} className="mx-auto flex w-full flex-col items-center justify-center">
                 <span className=" truncate text-center font-black text-slate-600">{item.id}</span>
@@ -43,7 +42,6 @@ const Home: NextPage<HomeProps> = ({ billions }: HomeProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
     const billions = await (await fetch("https://billions-api.nomadcoders.workers.dev/")).json();
-    console.log(billions);
     return {
         props: { billions },
     };
