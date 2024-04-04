@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface PersonCardProps {
@@ -8,6 +9,16 @@ interface PersonCardProps {
   industries: string[];
 }
 
-export default function PersonCard({}: PersonCardProps) {
-  return <div>PersonCard</div>;
+export default function PersonCard({
+  id,
+  industries,
+  name,
+  netWorth,
+  squareImage,
+}: PersonCardProps) {
+  return (
+    <div>
+      <Image src={squareImage} alt="#" />
+    </div>
+  );
 }
