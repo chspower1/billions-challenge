@@ -1,6 +1,8 @@
+import PersonCard from "@/components/person-card";
 import { API_URL } from "@/constant/api.constant";
 import Image from "next/image";
-interface People {
+import Link from "next/link";
+export interface People {
   id: string;
   name: string;
   squareImage: string;
@@ -15,19 +17,13 @@ const getAllPeople = async () => {
 export default async function Home({}) {
   const people: People[] = await getAllPeople();
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {people.map((person) => (
-        <div key={person.id} className="flex flex-col items-center">
-          <Image src={person.squareImage} alt={person.name} width={200} height={200} />
-          <h1 className="text-2xl font-bold">{person.name}</h1>
-          <p className="text-lg font-bold">{person.netWorth}</p>
-          <ul>
-            {person.industries.map((industry) => (
-              <li key={industry}>{industry}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <main className="flex min-h-screen flex-col items-center justify-between px-24">
+      <h1 className="text-2xl my-14">Billons in the world</h1>
+      <div className="flex flex-wrap justify-center items-center">
+        {people.map((person) => {
+          return <PersonCard key={person.id} person={person} />;
+        })}
+      </div>
     </main>
   );
 }
